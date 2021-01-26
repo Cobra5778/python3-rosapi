@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 ### Runs the script (commandos='') on the Mikrotik with delayed 2s to start by using scheduler
 ###
 
-def run_script(ip, inUser='', inPass='', commandos=''):
+def run_script(ip, inUser='admin', inPass='', commandos=''):
   tik = Core(ip, DEBUG=False)
   tik.login(inUser, inPass)
   API_zapros = tik.response_handler(tik.talk(["/system/scheduler/print", "?name=ch_fr_script",]))
@@ -25,7 +25,7 @@ def run_script(ip, inUser='', inPass='', commandos=''):
 ### Set new scan-list Frequensy on interface wlan1 by run_script()
 ###
 
-def SetNewFreqByScript(ip, newFreq):
+def SetNewFreqByScript(ip='192.168.88.1', newFreq='5100'):
     wirInterface = 'wlan1'
     command = "/interface wireless set [find default-name={}] scan-list={}".format(wirInterface, newFreq)
     run_script(ip, 'login', 'password', command)     
@@ -34,7 +34,7 @@ def SetNewFreqByScript(ip, newFreq):
 ### Set new scan-list Frequensy on interface wlan1
 ###
 
-def SetNewFreqByScript(ip, newFreq):
+def SetNewFreq(ip='192.168.88.1', newFreq='5100'):
     tik = Core(ip, DEBUG=False)
     tik.login('login', 'password')
     API_zapros = tik.response_handler(tik.talk(["/interface/wireless/print", "?default-name=wlan1", ]))
