@@ -187,6 +187,7 @@ class Core:
                         element_out[att[1:]] = element[att]
                     # collect modified data in new array
                     r.append(element_out)
+                    element_out = {}
         return r
 
     def run_interpreter(self):
