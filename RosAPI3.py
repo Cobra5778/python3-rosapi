@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys, posix, time, binascii, socket, select, ssl
+import sys, binascii, socket, select
 import hashlib
 
 """Python3 binding for Mikrotik RouterOS API"""
@@ -15,7 +15,6 @@ class Core:
     Core part is taken mostly from https://wiki.mikrotik.com/wiki/Manual:API_Python3 """
 
     def __init__(self, hostname, port=8728, DEBUG=False):
-        import socket
         self.DEBUG = DEBUG
         self.hostname = hostname
         self.port = port
@@ -191,7 +190,6 @@ class Core:
         return r
 
     def run_interpreter(self):
-        import select, sys
         inputsentence = []
         while 1:
             r = select.select([self.sk, sys.stdin], [], [], None)
